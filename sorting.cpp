@@ -25,6 +25,32 @@ void quickSort(int * a, int lo, int hi){
 	}
 }
 
+void heapify(int * a, int n, int i){
+	int largest = i;
+	int left = 2 * i;
+	int right = 2 * i + 1;
+	if(left < n && a[left] > a[largest]){
+		largest = left;
+	}
+	if(right < n && a[right] > a[largest]){
+		largest = right;
+	}
+	if(largest != i){
+		swap(a[largest], a[i]);
+		heapify(a, n, largest);
+	}
+}
+
+void heapSort(int * a, int n){
+	for(int i = n / 2 - 1;i>=0;i--){
+		heapify(a, n, i);
+	}
+	for(int i = n - 1;i>0;i--){
+		swap(a[i], a[0]);
+		heapify(a, i, 0);
+	}
+}
+
 void merge(int * a, int lo, int mid, int hi){
 	int t[100000];
 	int i = lo;
@@ -97,7 +123,7 @@ void display(int * a, int n){
 int main(){
 	int a[] = {12,123,423,534,645,7,4568,5678,67,9};
 	int n = sizeof(a) / sizeof(int);
-	quickSort(a, 0, n - 1);
+	heapSort(a, n);
 	display(a, n);
 	return 0;
 }
