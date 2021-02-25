@@ -3,6 +3,8 @@
 using namespace std;
 
 int getPivot(int * a, int lo, int hi){
+	int randIdx = lo + (rand() % (hi - lo));
+	swap(a[randIdx], a[lo]);
 	int pivot = a[lo];
 	int i = lo;
 	int j = hi;
@@ -95,7 +97,7 @@ void display(int * a, int n){
 int main(){
 	int a[] = {12,123,423,534,645,7,4568,5678,67,9};
 	int n = sizeof(a) / sizeof(int);
-	mergeSort(a, 0, n - 1);
+	quickSort(a, 0, n - 1);
 	display(a, n);
 	return 0;
 }
